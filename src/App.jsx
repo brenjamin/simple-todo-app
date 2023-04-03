@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import CounterButton from './components/CounterButton'
 import ToDoList from './components/ToDoList'
 
 function App() {

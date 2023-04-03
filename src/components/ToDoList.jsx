@@ -5,11 +5,12 @@ function ToDoList() {
   // initial state using useState
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState('')
+
+  // add ref for header
   const header = useRef(null)
 
-  useEffect(() => {
-    header.current.style.backgroundColor = generateRandomBgColor()
-  }, [todos])
+  // add use effect when todos is updated to generate random bg color for header
+  useEffect(() => {}, [])
 
   function generateRandomBgColor() {
     const x = Math.floor(Math.random() * 256)
@@ -18,70 +19,26 @@ function ToDoList() {
     return 'rgb(' + x + ',' + y + ',' + z + ')'
   }
 
-  function handleChange(e) {
-    setNewTodo(e.target.value)
-  }
+  // update input value on change
+  function handleChange(e) {}
 
-  function handleAdd() {
-    if (newTodo) {
-      setTodos(prevState => [...prevState, newTodo])
-      setNewTodo('')
-    }
-  }
+  // add new todo
+  function handleAdd() {}
 
-  function handleDelete(index) {
-    setTodos(
-      todos.filter((item, i) => {
-        return index != i
-      })
-    )
-  }
+  // delete todo
+  function handleDelete(index) {}
 
   return (
     <section className="py-8">
       <div className="container mx-auto max-w-5xl">
-        <h1 className="text-center p-2 rounded-lg w-1/2 mx-auto" ref={header}>
-          To Do List
-        </h1>
+        <h1 className="text-center p-2 rounded-lg w-1/2 mx-auto">To Do List</h1>
         <h2 className="text-center py-4 text-2xl">
-          {todos.length} total item{todos.length != 1 ? 's' : ''}
+          {/* add number of todos */} total todos
         </h2>
-        <form
-          onSubmit={e => e.preventDefault()}
-          className="flex gap-2 mt-3 justify-center"
-        >
-          <input
-            onChange={handleChange}
-            value={newTodo}
-            type="text"
-            className="p-2 rounded-lg w-72 block"
-            autoFocus
-          />
-          <button
-            className="cursor-pointer border border-white"
-            onClick={handleAdd}
-            disabled={!newTodo}
-            type="submit"
-          >
-            Add
-          </button>
-        </form>
-        <div className="mt-6">
-          {todos.length ? (
-            <ul className="flex flex-col gap-5">
-              {todos.map((todo, index) => (
-                <SingleToDo
-                  todo={todo}
-                  index={index}
-                  handleDelete={handleDelete}
-                  key={index}
-                />
-              ))}
-            </ul>
-          ) : (
-            <h2 className="text-center text-3xl">Add a todo to get started</h2>
-          )}
-        </div>
+        {/* add todo form */}
+
+        {/* conditionally render todos list */}
+        <div className="mt-6"></div>
       </div>
     </section>
   )
